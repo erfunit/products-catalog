@@ -46,8 +46,8 @@ const FilterBar: React.FC = () => {
             min={0}
             max={5000}
             step={50}
-            renderThumb={(props, state) => <div {...props} className="thumb" />}
-            renderTrack={(props, state) => <div {...props} className="track" />}
+            renderThumb={(props) => <div {...props} className="thumb" />}
+            renderTrack={(props) => <div {...props} className="track" />}
             className="slider"
           />
         </div>

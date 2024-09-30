@@ -10,17 +10,17 @@ const ProductCard = (product: Product) => {
       layoutId={product.id.toString()}
       key={product.id}
       className="card bg-base-100 rounded-lg border"
-      initial={{ opacity: 0, y: 20, scale: 0.9 }} // Start with a smaller scale
-      animate={{ opacity: 1, y: 0, scale: 1 }} // Animate to full scale
+      initial={{ opacity: 0, y: 20, scale: 0.9 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
       exit={{
         opacity: 0,
         y: -20,
-        scale: 0.9, // Scale down on exit
-        filter: "blur(5px)", // Blur on exit
+        scale: 0.9,
+        filter: "blur(5px)",
       }}
       transition={{
         duration: 0.7,
-        ease: [0.5, 1.5, 0.5, 1], // Custom easing for bounce effect
+        ease: [0.5, 1.5, 0.5, 1],
         delay: Math.random() * 0.4,
         bounce: 1,
       }}

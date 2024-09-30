@@ -14,15 +14,19 @@ html {
 
 .thumb {
   position: relative;
-  top: -4px;
+  top: -6px;
   height: 20px;
   width: 20px;
-  background-color: #3f00e7; /* Your primary color */
+  background-color: #591dff; /* Your primary color */
   border-radius: 50%;
 }
 
 .track {
-  height: 10px;
+  height: 7px;
   border-radius: 10px;
   background-color: #e0e0e0; /* Track color */
+}
+
+.form-control .slider .track:nth-child(2) {
+  background-color: #3f00e7; /* Style for the third child */
 }
