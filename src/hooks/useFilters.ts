@@ -13,13 +13,33 @@ const useFilters = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const params = new URLSearchParams();
-    if (priceRange[0] !== 0)
-      params.append("minPrice", priceRange[0].toString());
-    if (priceRange[1] !== 1000)
-      params.append("maxPrice", priceRange[1].toString());
-    if (category) params.append("category", category);
-    if (brand) params.append("brand", brand);
+
+    const params = new URLSearchParams(Array.from(searchParams.entries()));
+
+    if (priceRange[0] !== 0) {
+      params.set("minPrice", priceRange[0].toString());
+    } else {
+      params.delete("minPrice");
+    }
+
+    if (priceRange[1] !== 5000) {
+      params.set("maxPrice", priceRange[1].toString());
+    } else {
+      params.delete("maxPrice");
+    }
+
+    if (category) {
+      params.set("category", category);
+    } else {
+      params.delete("category");
+    }
+
+    if (brand) {
+      params.set("brand", brand);
+    } else {
+      params.delete("brand");
+    }
+
     router.push(`/?${params.toString()}`);
   };
 

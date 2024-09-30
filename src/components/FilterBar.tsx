@@ -7,7 +7,7 @@ import useFilters from "@/hooks/useFilters";
 import { brands } from "@/constants/brands";
 import { categories } from "@/constants/categories";
 
-const FilterBar: React.FC = () => {
+const FilterBar: React.FC<{ callback: () => void }> = ({ callback }) => {
   const {
     priceRange,
     setPriceRange,
@@ -20,7 +20,10 @@ const FilterBar: React.FC = () => {
 
   return (
     <motion.form
-      onSubmit={handleSubmit}
+      onSubmit={(event) => {
+        handleSubmit(event);
+        callback();
+      }}
       className="mb-2"
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}

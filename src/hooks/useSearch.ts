@@ -8,7 +8,15 @@ const useSearch = () => {
   const router = useRouter();
 
   const debouncedSearch = debounce((value) => {
-    router.push(`/?query=${encodeURIComponent(value)}`);
+    const params = new URLSearchParams(Array.from(searchParams.entries()));
+
+    if (value) {
+      params.set("query", value);
+    } else {
+      params.delete("query");
+    }
+
+    router.push(`/?${params.toString()}`);
   }, 500);
 
   useEffect(() => {

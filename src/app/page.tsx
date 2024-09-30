@@ -1,13 +1,14 @@
 import { Suspense } from "react";
 import { Product } from "@/types/product";
-import ProductList from "../components/ProductsList";
-import SearchBar from "../components/SearchBar";
-import FilterBar from "../components/FilterBar";
-import Pagination from "../components/Pagination";
-import ResetButton from "../components/ResetButton";
+import ProductList from "@/components/ProductsList";
+import SearchBar from "@/components/SearchBar";
+import FilterBar from "@/components/FilterBar";
+import Pagination from "@/components/Pagination";
+import ResetButton from "@/components/ResetButton";
 import { getProducts } from "@/lib/api/getProducts";
 import filterProducts from "@/lib/filterProducts";
 import paginateProducts from "@/lib/paginateProducts";
+import SearchAndFilter from "@/components/SearchAndFilter";
 
 export default async function Home({
   searchParams,
@@ -35,7 +36,7 @@ export default async function Home({
     category,
   });
 
-  const { paginatedProducts, totalPages, itemsPerPage } = paginateProducts(
+  const { paginatedProducts, totalPages } = paginateProducts(
     filteredProducts,
     page
   );
@@ -44,11 +45,7 @@ export default async function Home({
     <main className="container mx-auto px-4 py-8">
       <h1 className="text-4xl font-bold mb-8 text-center">Product Catalog</h1>
       <div className="w-full grid grid-cols-12 gap-5">
-        <div className="col-span-6 lg:col-span-3 border h-fit p-3 rounded-lg sticky top-3 hidden md:block">
-          <SearchBar />
-          <FilterBar />
-          <ResetButton />
-        </div>
+        <SearchAndFilter />
         <div className="col-span-12 md:col-span-6 lg:col-span-8">
           <Suspense fallback={<div>Loading...</div>}>
             <div className="mb-4">
