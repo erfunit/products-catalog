@@ -1,4 +1,3 @@
-// components/Pagination.tsx
 "use client";
 
 import { useRouter } from "next/navigation";

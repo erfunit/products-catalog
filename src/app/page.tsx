@@ -1,4 +1,3 @@
-// app/page.tsx
 import { Suspense } from "react";
 import { Product } from "@/types/product";
 import ProductList from "./components/ProductsList";

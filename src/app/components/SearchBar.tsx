@@ -1,11 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
 
 const SearchBar: React.FC = () => {
-  const [query, setQuery] = useState("");
+  const serachParams = useSearchParams();
+  const [query, setQuery] = useState(serachParams.get("query") || "");
   const router = useRouter();
 
   const handleSubmit = (e: React.FormEvent) => {

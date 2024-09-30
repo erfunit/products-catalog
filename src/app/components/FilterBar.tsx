@@ -1,16 +1,19 @@
-// components/FilterBar.tsx
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
 import { MdOutlineDone } from "react-icons/md";
-import Slider from "react-slider"; // Import the Slider component
+import Slider from "react-slider";
 
 const FilterBar: React.FC = () => {
-  const [priceRange, setPriceRange] = useState<[number, number]>([0, 5000]); // Default range
-  const [category, setCategory] = useState("");
-  const [brand, setBrand] = useState("");
+  const searchParams = useSearchParams();
+  const [priceRange, setPriceRange] = useState<[number, number]>([
+    Number(searchParams.get("minPrice")) || 0,
+    Number(searchParams.get("maxPrice")) || 5000,
+  ]);
+  const [category, setCategory] = useState(searchParams.get("category") || "");
+  const [brand, setBrand] = useState(searchParams.get("brand") || "");
   const router = useRouter();
 
   const handleSubmit = (e: React.FormEvent) => {
