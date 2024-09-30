@@ -7,6 +7,9 @@ import paginateProducts from "@/lib/paginateProducts";
 import SearchAndFilter from "@/components/SearchAndFilter";
 import Loading from "./loading";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 60;
+
 export default async function Home({
   searchParams,
 }: {
