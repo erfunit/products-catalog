@@ -1,18 +1,11 @@
 import { Suspense } from "react";
 import { Product } from "@/types/product";
-import ProductList from "./components/ProductsList";
-import SearchBar from "./components/SearchBar";
-import FilterBar from "./components/FilterBar";
-import Pagination from "./components/Pagination";
-import ResetButton from "./components/ResetButton";
-
-async function getProducts(): Promise<Product[]> {
-  const res = await fetch("http://localhost:3000/api/products");
-  if (!res.ok) {
-    throw new Error("Failed to fetch products");
-  }
-  return res.json();
-}
+import ProductList from "../components/ProductsList";
+import SearchBar from "../components/SearchBar";
+import FilterBar from "../components/FilterBar";
+import Pagination from "../components/Pagination";
+import ResetButton from "../components/ResetButton";
+import { getProducts } from "@/api/getProducts";
 
 export default async function Home({
   searchParams,
