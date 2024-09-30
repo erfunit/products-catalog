@@ -1,19 +1,11 @@
 "use client";
 
-import { useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import useSearch from "@/hooks/useSearch";
 import { motion } from "framer-motion";
 import { CiSearch } from "react-icons/ci";
 
 const SearchBar: React.FC = () => {
-  const serachParams = useSearchParams();
-  const [query, setQuery] = useState(serachParams.get("query") || "");
-  const router = useRouter();
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    router.push(`/?query=${encodeURIComponent(query)}`);
-  };
+  const { query, setQuery, handleSubmit } = useSearch();
 
   return (
     <motion.form

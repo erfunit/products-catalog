@@ -1,7 +1,5 @@
 "use client";
 
-import { useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
 import { MdOutlineDone } from "react-icons/md";
 import Slider from "react-slider";

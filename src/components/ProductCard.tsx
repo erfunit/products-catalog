@@ -44,9 +44,6 @@ const ProductCard = (product: Product) => {
             <div className="badge badge-secondary">{product.brand}</div>
           </div>
         </div>
-        {/* <div className="card-actions justify-end mt-4">
-          <div className="badge badge-secondary">{product.brand}</div>
-        </div> */}
       </div>
     </motion.div>
   );
