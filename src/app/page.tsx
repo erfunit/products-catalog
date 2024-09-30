@@ -1,11 +1,10 @@
 import { Suspense } from "react";
-import { Product } from "@/types/product";
-import ProductList from "../components/ProductsList";
-import SearchBar from "../components/SearchBar";
-import FilterBar from "../components/FilterBar";
-import Pagination from "../components/Pagination";
-import ResetButton from "../components/ResetButton";
-import { getProducts } from "@/api/getProducts";
+import ProductList from "@/components/ProductsList";
+import SearchBar from "@/components/SearchBar";
+import FilterBar from "@/components/FilterBar";
+import Pagination from "@/components/Pagination";
+import ResetButton from "@/components/ResetButton";
+import { getProducts } from "@/lib/api/getProducts";
 
 export default async function Home({
   searchParams,
