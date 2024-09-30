@@ -1,20 +1,27 @@
+import debounce from "lodash.debounce";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const useSearch = () => {
-  const serachParams = useSearchParams();
-  const [query, setQuery] = useState(serachParams.get("query") || "");
+  const searchParams = useSearchParams();
+  const [query, setQuery] = useState(searchParams.get("query") || "");
   const router = useRouter();
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    router.push(`/?query=${encodeURIComponent(query)}`);
-  };
+  const debouncedSearch = debounce((value) => {
+    router.push(`/?query=${encodeURIComponent(value)}`);
+  }, 500);
+
+  useEffect(() => {
+    debouncedSearch(query);
+
+    return () => {
+      debouncedSearch.cancel();
+    };
+  }, [query]);
 
   return {
     query,
     setQuery,
-    handleSubmit,
   };
 };
 
