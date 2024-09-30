@@ -1,10 +1,6 @@
 import { Suspense } from "react";
-import { Product } from "@/types/product";
 import ProductList from "@/components/ProductsList";
-import SearchBar from "@/components/SearchBar";
-import FilterBar from "@/components/FilterBar";
 import Pagination from "@/components/Pagination";
-import ResetButton from "@/components/ResetButton";
 import { getProducts } from "@/lib/api/getProducts";
 import filterProducts from "@/lib/filterProducts";
 import paginateProducts from "@/lib/paginateProducts";

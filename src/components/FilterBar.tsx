@@ -6,6 +6,8 @@ import Slider from "react-slider";
 import useFilters from "@/hooks/useFilters";
 import { brands } from "@/constants/brands";
 import { categories } from "@/constants/categories";
+import { Brand } from "@/types/brand";
+import { Category } from "@/types/category";
 
 const FilterBar: React.FC<{ callback: () => void }> = ({ callback }) => {
   const {

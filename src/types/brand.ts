@@ -1,4 +1,4 @@
-type Brand =
+export type Brand =
   | "apple"
   | "samsung"
   | "sony"
