@@ -1,10 +1,13 @@
 import { Suspense } from "react";
-import ProductList from "@/components/ProductsList";
-import SearchBar from "@/components/SearchBar";
-import FilterBar from "@/components/FilterBar";
-import Pagination from "@/components/Pagination";
-import ResetButton from "@/components/ResetButton";
+import { Product } from "@/types/product";
+import ProductList from "../components/ProductsList";
+import SearchBar from "../components/SearchBar";
+import FilterBar from "../components/FilterBar";
+import Pagination from "../components/Pagination";
+import ResetButton from "../components/ResetButton";
 import { getProducts } from "@/lib/api/getProducts";
+import filterProducts from "@/lib/filterProducts";
+import paginateProducts from "@/lib/paginateProducts";
 
 export default async function Home({
   searchParams,
@@ -12,6 +15,7 @@ export default async function Home({
   searchParams: { [key: string]: string | string[] | undefined };
 }) {
   const products = await getProducts();
+
   const query = searchParams.query as string | undefined;
   const page = searchParams.page ? Number(searchParams.page) : 1;
   const minPrice = searchParams.minPrice
@@ -23,34 +27,17 @@ export default async function Home({
   const category = searchParams.category as string | undefined;
   const brand = searchParams.brand as string | undefined;
 
-  const filteredProducts = products.filter((product) => {
-    if (
-      query &&
-      !product.name.toLowerCase().includes(query.toLowerCase()) &&
-      !product.description.toLowerCase().includes(query.toLowerCase())
-    ) {
-      return false;
-    }
-    if (minPrice !== undefined && product.price < minPrice) {
-      return false;
-    }
-    if (maxPrice !== undefined && product.price > maxPrice) {
-      return false;
-    }
-    if (category && product.category !== category) {
-      return false;
-    }
-    if (brand && product.brand !== brand) {
-      return false;
-    }
-    return true;
+  const filteredProducts = filterProducts(products, {
+    query,
+    brand,
+    minPrice,
+    maxPrice,
+    category,
   });
 
-  const itemsPerPage = 10;
-  const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
-  const paginatedProducts = filteredProducts.slice(
-    (page - 1) * itemsPerPage,
-    page * itemsPerPage
+  const { paginatedProducts, totalPages, itemsPerPage } = paginateProducts(
+    filteredProducts,
+    page
   );
 
   return (
