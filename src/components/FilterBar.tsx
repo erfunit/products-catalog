@@ -4,6 +4,8 @@ import { motion } from "framer-motion";
 import { MdOutlineDone } from "react-icons/md";
 import Slider from "react-slider";
 import useFilters from "@/hooks/useFilters";
+import { brands } from "@/constants/brands";
+import { categories } from "@/constants/categories";
 
 const FilterBar: React.FC = () => {
   const {
@@ -47,25 +49,35 @@ const FilterBar: React.FC = () => {
           <label className="label">
             <span className="label-text">Category</span>
           </label>
-          <input
-            type="text"
-            placeholder="Category"
-            className="input input-bordered"
+          <select
             value={category}
-            onChange={(e) => setCategory(e.target.value)}
-          />
+            onChange={(e) => setCategory(e.target.value as Category)}
+            className="select select-bordered"
+          >
+            <option value="">Select Category</option>
+            {categories.map((cat) => (
+              <option key={cat} value={cat}>
+                {cat.charAt(0).toUpperCase() + cat.slice(1)}
+              </option>
+            ))}
+          </select>
         </div>
         <div className="form-control">
           <label className="label">
             <span className="label-text">Brand</span>
           </label>
-          <input
-            type="text"
-            placeholder="Brand"
-            className="input input-bordered"
+          <select
             value={brand}
-            onChange={(e) => setBrand(e.target.value)}
-          />
+            onChange={(e) => setBrand(e.target.value as Brand)}
+            className="select select-bordered"
+          >
+            <option value="">Select Brand</option>
+            {brands.map((br) => (
+              <option key={br} value={br}>
+                {br.charAt(0).toUpperCase() + br.slice(1)}
+              </option>
+            ))}
+          </select>
         </div>
       </div>
       <div className="mt-4 w-full">
