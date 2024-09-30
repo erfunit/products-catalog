@@ -4,7 +4,9 @@ export async function getProducts(): Promise<Product[]> {
   try {
     const res = await fetch(
       `${
-        process.env.NODE_ENV === "production" ? "" : "http://localhost:3000"
+        process.env.NODE_ENV === "production"
+          ? "https://products-catalog2.vercel.app"
+          : "http://localhost:3000"
       }/api/products`
     );
     if (!res.ok) {
