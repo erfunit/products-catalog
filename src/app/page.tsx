@@ -5,6 +5,7 @@ import { getProducts } from "@/lib/api/getProducts";
 import filterProducts from "@/lib/filterProducts";
 import paginateProducts from "@/lib/paginateProducts";
 import SearchAndFilter from "@/components/SearchAndFilter";
+import Loading from "./loading";
 
 export default async function Home({
   searchParams,
@@ -43,7 +44,7 @@ export default async function Home({
       <div className="w-full grid grid-cols-12 gap-5">
         <SearchAndFilter />
         <div className="col-span-12 md:col-span-6 lg:col-span-8">
-          <Suspense fallback={<div>Loading...</div>}>
+          <Suspense fallback={<Loading />}>
             <div className="mb-4">
               Total Products: {filteredProducts.length}
             </div>
