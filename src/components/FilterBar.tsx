@@ -5,28 +5,18 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
 import { MdOutlineDone } from "react-icons/md";
 import Slider from "react-slider";
+import useFilters from "@/hooks/useFilters";
 
 const FilterBar: React.FC = () => {
-  const searchParams = useSearchParams();
-  const [priceRange, setPriceRange] = useState<[number, number]>([
-    Number(searchParams.get("minPrice")) || 0,
-    Number(searchParams.get("maxPrice")) || 5000,
-  ]);
-  const [category, setCategory] = useState(searchParams.get("category") || "");
-  const [brand, setBrand] = useState(searchParams.get("brand") || "");
-  const router = useRouter();
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    const params = new URLSearchParams();
-    if (priceRange[0] !== 0)
-      params.append("minPrice", priceRange[0].toString());
-    if (priceRange[1] !== 1000)
-      params.append("maxPrice", priceRange[1].toString());
-    if (category) params.append("category", category);
-    if (brand) params.append("brand", brand);
-    router.push(`/?${params.toString()}`);
-  };
+  const {
+    priceRange,
+    setPriceRange,
+    category,
+    setCategory,
+    handleSubmit,
+    brand,
+    setBrand,
+  } = useFilters();
 
   return (
     <motion.form
